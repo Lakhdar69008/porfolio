@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kharchi Lakhdar | Portfolio BTS SIO SLAM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* VARIABLES ET COULEURS TECH */
+        :root {
+            --bg-body: #0a0e14;       /* Bleu nuit profond */
+            --bg-card: #151921;       /* Gris-bleu foncé */
+            --primary: #00a8ff;       /* Bleu électrique */
+            --accent: #fbc531;        /* Jaune/Or pour le contraste */
+            --text-white: #f5f6fa;
+            --text-gray: #a4b0be;
+            --border: #2f3640;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-white);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* NAVIGATION */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 10%;
+            background: rgba(10, 14, 20, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-weight: 900;
+            font-size: 1.2rem;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        nav ul { display: flex; list-style: none; }
+        nav ul li { margin-left: 25px; }
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-gray);
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+        nav ul li a:hover { color: var(--primary); }
+
+        /* SECTION ACCUEIL */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10%;
+            background: radial-gradient(circle at top right, #1e272e, #0a0e14);
+        }
+
+        .hero-content { max-width: 600px; }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 10px; line-height: 1.1; }
+        .hero span { color: var(--primary); }
+        
+        .typing {
+            color: var(--accent);
+            font-weight: bold;
+            border-right: 3px solid var(--accent);
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
+            animation: typing 2.5s steps(40, end) forwards, blink 0.8s infinite;
+        }
+
+        @keyframes typing { from { width: 0; } to { width: 100%; } }
+        @keyframes blink { 50% { border-color: transparent; } }
+
+        .profile-img-container {
+            position: relative;
+            width: 320px;
+            height: 320px;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 30px;
+            object-fit: cover;
+            border: 2px solid var(--primary);
+            box-shadow: 0 15px 35px rgba(0, 168, 255, 0.2);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* SECTIONS GÉNÉRALES */
+        section { padding: 120px 10% 80px; }
+        .section-header { margin-bottom: 60px; }
+        .section-header h2 { font-size: 2rem; color: var(--text-white); position: relative; display: inline-block; }
+        .section-header h2::after { content: ""; position: absolute; bottom: -10px; left: 0; width: 50px; height: 4px; background: var(--primary); }
+
+        /* CONTACT STYLE */
+        .contact-info-container {
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .contact-location {
+            font-size: 1.3rem;
+            color: var(--accent);
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+
+        .contact-grid {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            text-decoration: none;
+            color: var(--text-white);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.1rem;
+            transition: 0.3s;
+        }
+
+        .contact-link i {
+            font-size: 1.4rem;
+            color: var(--primary);
+        }
+
+        .contact-link:hover {
+            color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        /* GRILLES ET CARTES */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        
+        .card {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .card img {
+            width: 100%;
+            height: 180px;
+            border-radius: 8px;
+            object-fit: cover;
+            margin-bottom: 20px;
+            background: #0a0e14;
+        }
+
+        .card h3 { color: var(--primary); margin-bottom: 15px; }
+        .card p { color: var(--text-gray); font-size: 0.95rem; }
+
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        footer { text-align: center; padding: 50px; border-top: 1px solid var(--border); color: var(--text-gray); font-size: 0.8rem; }
+
+        @media (max-width: 768px) {
+            .hero { flex-direction: column; text-align: center; justify-content: center; gap: 50px; }
+            .hero h1 { font-size: 2.5rem; }
+            nav ul { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo">KL.<span>SLAM</span></a>
+        <ul>
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#qui-suis-je">Qui suis-je ?</a></li>
+            <li><a href="#competences">Compétences</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#realisations">Réalisations</a></li>
+            <li><a href="#veille">Veille</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="accueil" class="hero">
+        <div class="hero-content">
+            <div class="typing">KHARCHI Lakhdar // 19 ANS</div>
+            <h1>Futur Développeur <span>Full-Stack</span></h1>
+            <p style="color: var(--text-gray); font-size: 1.2rem; margin-top: 15px;">
+                Passionné par l'architecture logicielle, je suis actuellement mon cursus en 
+                <strong>BTS SIO (SLAM) au cœur d'Annecy</strong>. Cette formation technique me permet 
+                de transformer des problématiques complexes en solutions numériques concrètes et efficaces.
+                <br><br>
+                Rigoureux et polyvalent, je partage mon dynamisme entre mes projets académiques en Haute-Savoie 
+                et mes ambitions professionnelles sur Lyon. Mon objectif : allier performance technique et 
+                expérience utilisateur pour bâtir le web de demain.
+            </p>
+        </div>
+        <div class="profile-img-container">
+            <img src="c:\Users\SLAB62\OneDrive - Saint Michel\Images\Capture d'écran 2026-01-29 154947.png" alt="Photo de Lakhdar" class="profile-img" onerror="this.src='https://via.placeholder.com/400x400/151921/00a8ff?text=Lakhdar'">
+        </div>
+    </section>
+
+    <section id="qui-suis-je" class="reveal">
+        <div class="section-header">
+            <h2>Qui suis-je ?</h2>
+        </div>
+        
+        <div style="max-width: 850px; border-left: 3px solid var(--primary); padding-left: 30px;">
+            <p style="font-size: 1.2rem; line-height: 1.8; color: var(--text-white);">
+                Âgé de 19 ans, je suis actuellement mon cursus en <strong>BTS SIO (option SLAM) à Annecy</strong>. 
+                Spécialisé dans le développement d'applications, je m'attache à concevoir des solutions informatiques robustes et adaptées aux besoins des utilisateurs.
+            </p>
+            <br>
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-gray);">
+                Originaire de <strong>Lyon</strong>, je dispose d'une parfaite connaissance de la région et d'une mobilité totale sur l'axe <strong>Lyon - Annecy</strong>. Cette double implantation me permet d'être réactif et disponible pour des opportunités professionnelles dans ces deux pôles technologiques majeurs.
+            </p>
+            <br>
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-gray);">
+                Mon objectif est d'intégrer une équipe dynamique où je pourrai mettre ma rigueur, ma curiosité technique et mon sens de l'analyse au service de projets ambitieux.
+            </p>
+        </div>
+        <div style="margin-top: 30px;">
+            <a href="cv stage lyon.pdf" class="btn" style="text-decoration: none; display: inline-block; padding: 15px 35px; background: var(--primary); color: white; border-radius: 8px; font-weight: bold;">Voir mon CV</a>
+        </div>
+    </section>
+
+    <section id="competences" class="reveal" style="background: rgba(255,255,255,0.02);">
+        <div class="section-header"><h2>Mes compétences</h2></div>
+        <div class="grid">
+            <div class="card">
+                <h3 style="color: var(--accent);">Backend</h3>
+                <p>Java, Python et C#.</p>
+            </div>
+            <div class="card">
+                <h3 style="color: var(--accent);">Frontend</h3>
+                <p>HTML5, CSS3 et JavaScript.</p>
+            </div>
+            <div class="card">
+                <h3 style="color: var(--accent);">Bases de données</h3>
+                <p>SQL, MySQL, PostgreSQL.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications" class="reveal">
+        <div class="section-header"><h2>Certifications</h2></div>
+        <div class="grid">
+            <div class="card" style="border-left: 4px solid var(--accent);">
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                    <i class="fas fa-shield-alt" style="font-size: 2rem; color: var(--accent);"></i>
+                    <h3 style="margin-bottom: 0;">SecNumAcadémie</h3>
+                </div>
+                <p>Certification de l'<strong>ANSSI</strong> relative à la cybersécurité.</p>
+                <span style="font-size: 0.8rem; color: var(--primary); font-weight: bold;">Obtenue</span>
+            </div>
+            <div class="card" style="border-left: 4px solid var(--accent);">
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                    <i class="fab fa-python" style="font-size: 2rem; color: var(--accent);"></i>
+                    <h3 style="margin-bottom: 0;">Python Essentials</h3>
+                </div>
+                <p>Certification <strong>Cisco Networking Academy</strong> sur la programmation.</p>
+                <span style="font-size: 0.8rem; color: var(--primary); font-weight: bold;">En cours</span>
+            </div>
+            <div class="card" style="border-left: 4px solid var(--accent);">
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                    <i class="fas fa-certificate" style="font-size: 2rem; color: var(--accent);"></i>
+                    <h3 style="margin-bottom: 0;">OpenClassrooms</h3>
+                </div>
+                <p>Certificats sur les fondamentaux du Web et l'outil <strong>Git / GitHub</strong>.</p>
+                <span style="font-size: 0.8rem; color: var(--primary); font-weight: bold;">Obtenue</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="realisations" class="reveal" style="background: rgba(255,255,255,0.02);">
+        <div class="section-header"><h2>Mes réalisations</h2></div>
+        <div class="grid">
+            <div class="card">
+                <img src="projet1.jpg" alt="Aperçu Projet" onerror="this.src='https://via.placeholder.com/400x200/151921/00a8ff?text=Logiciel+SLAM'">
+                <h3>Gestion de Stock</h3>
+                <p>Application Java avec rapports PDF.</p>
+            </div>
+            <div class="card">
+                <img src="projet2.jpg" alt="Aperçu Projet" onerror="this.src='https://via.placeholder.com/400x200/151921/00a8ff?text=Site+Web+Métier'">
+                <h3>Portail Client</h3>
+                <p>Site web dynamique en PHP (MVC).</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="veille" class="reveal">
+        <div class="section-header"><h2>Veille technologique</h2></div>
+        <div style="max-width: 800px;">
+            <ul style="margin-left: 20px; color: var(--text-gray);">
+                <li><strong>Intelligence Artificielle :</strong> Intégration des LLM dans le développement logiciel.</li>
+                <li><strong>Cybersécurité :</strong> Veille sur les vulnérabilités OWASP pour sécuriser mes applications.</li>
+                <li><strong>Frameworks JS :</strong> Évolution de l'écosystème React et Node.js.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="contact" class="reveal" style="background: rgba(255,255,255,0.02);">
+        <div class="section-header"><h2>Contact</h2></div>
+        <div class="contact-info-container">
+            <p class="contact-location"><i class="fas fa-map-marker-alt"></i> Lyon (69) / Annecy (74), France</p>
+            <div class="contact-grid">
+                <a href="tel:0666203201" class="contact-link">
+                    <i class="fas fa-phone-alt"></i> 06 66 20 32 01
+                </a>
+                <a href="mailto:lakhdar.kharchi@hotmail.com" class="contact-link">
+                    <i class="fas fa-envelope"></i> lakhdar.kharchi@hotmail.com
+                </a>
+                <a href="https://www.linkedin.com/in/lakhdar-kharchi-a91481322/?trk=opento_sprofile_details" target="_blank" class="contact-link">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>KHARCHI Lakhdar // Portfolio BTS SIO SLAM // 2026</p>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
